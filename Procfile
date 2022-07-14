@@ -1,2 +1,1 @@
-web: gunicorn patient_details:patient_details
-
+web: gunicorn -b :$PORT patient_details:patient_details
