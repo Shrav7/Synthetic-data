@@ -1,2 +1,2 @@
-web: gunicorn -b :$PORT app:app
+web: gunicorn patient_details:patient_details
 
