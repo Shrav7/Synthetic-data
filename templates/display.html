@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Synthetic_data</title>
+<style>
+label
+{
+	font-size: 30pt ;
+	width: 150px;
+}
+input[type = text]
+{
+	height: 40px;
+	width: 200px;
+	font-size: 20pt;
+}
+input[type = submit]
+{
+	background-color: palevioletred;
+	width: 150px;
+	height: 40px;
+}
+h1
+{
+	font-size: 50pt;
+}
+p
+{
+font-size: 20pt;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.left {
+  left: 0;
+  background-image: url('/static/images/image3.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
+.right {
+  right: 0;
+  background-color: floralwhite;
+}
+
+</style>
+</head>
+<body>
+<form action = "/details" method="post">
+<div class="split left">
+	  <h1><i>Welcome!!</i></h1>
+  <div class="centered">
+  	<p>Click below for all patient details...</p>
+	<center><input type="submit" value="Check All details"></center>
+  </div>
+</div>
+</form>
+<br><br>
+<form action = "/submit" method = 'post'>
+	<div class="split right">
+  <div class="centered">
+	<center><label for = "Patient_id"> Enter the patient_id: </label></center><br>
+	<center><input type = "text" id = "p_id" name = "patient_id" value =" "></center>
+	<br>
+	<br>
+	<center><input type = "submit" value = "Check Patient Details"></center>
+	<br>
+	<center><input type="reset" value="Clear"></center>
+	  </div>
+</div>
+</form>
+</body>
+</html>
