@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css')}}">
+    <title>Patient_info</title>
+    <link rel="stylesheet" href=
+"https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+  <!--jQuery library file -->
+  <script type="text/javascript" src=
+    "https://code.jquery.com/jquery-3.5.1.js">
+  </script>
+   
+  <!--Datatable plugin JS library file -->
+  <script type="text/javascript" src=
+"https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+  </script>
+ 
+    <style type="text/css">
+        body {
+     background-image: url('/static/images/image2.png');
+     background-repeat: no-repeat;
+     background-attachment: fixed; 
+     background-size: 100% 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <br><br>
+    <h1>Patient Details :</h1>
+    <br>
+    <div class="heading">
+</div>
+    <div class="outer-wrapper">
+    <div class="table-wrapper">
+    <table id="patient-table">
+        <thead>
+            <th col-index = 1>Patient_Id</th>
+            <th col-index = 2>Gender</th>
+            <th col-index = 3>marital_status</th>
+            <th col-index = 4>ethnicity</th>
+            <th col-index = 5>religion</th>
+            <th col-index = 6>Department
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all">All</option>
+                </select>
+            </th>
+            <th col-index = 7>Body_structure
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all">All</option>
+                </select>
+            </th>
+            <th col-index = 8>disease
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all">All</option>
+                </select>
+            </th>
+            <th col-index = 9>expired
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all">Both</option>
+                </select>
+            </th>
+            
+        </thead>
+        <tbody>
+            {%for d in data%}
+            <tr>
+                <td>{{d[0]}}</td>
+                <td>{{d[1]}}</td>
+                <td>{{d[2]}}</td>
+                <td>{{d[3]}}</td>
+                <td>{{d[4]}}</td>
+                <td>{{d[7]}}</td>
+                <td>{{d[6]}}</td>
+                <td>{{d[5]}}</td>
+                <td>{{d[8]}}</td>
+            </tr>
+            {% endfor%}
+
+        </tbody>
+    </table>
+</div>
+</div>
+
+   <script>
+ 
+      /* Initialization of datatables */
+      $(document).ready(function () {
+ 
+        // Paging and other information are
+        // disabled if required, set to true
+        var myTable = $("#patient-table").DataTable({
+          paging: true,
+          searching: true,
+          info: false,
+        });
+ 
+        // 2d array is converted to 1D array
+        // structure the actions are
+        // implemented on EACH column
+        myTable
+          .columns()
+          .flatten()
+          .each(function (colID) {
+ 
+            // Create the select list in the
+            // header column header
+            // On change of the list values,
+            // perform search operation
+            var mySelectList = $("<select />")
+              .appendTo(myTable.column(colID).header())
+              .on("change", function () {
+                myTable.column(colID).search($(this).val());
+ 
+                // update the changes using draw() method
+                myTable.column(colID).draw();
+              });
+ 
+            // Get the search cached data for the
+            // first column add to the select list
+            // using append() method
+            // sort the data to display to user
+            // all steps are done for EACH column
+            myTable
+              .column(colID)
+              .cache("search")
+              .sort()
+              .each(function (param) {
+                mySelectList.append(
+                  $('<option value="' + param + '">'
+                    + param + "</option>")
+                );
+              });
+          });
+      });
+  </script>
+</body>
+</html>
