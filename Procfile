@@ -1,1 +1,1 @@
-web: gunicorn -b :$PORT patient_details:patient_details
+web: gunicorn --bind 0.0.0.0:$PORT patient_details:app
