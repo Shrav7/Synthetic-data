@@ -1,8 +1,9 @@
 import psycopg2
+import os
 from flask import Flask,render_template, url_for
 from flask import request, redirect, jsonify
 
-
+port = int(os.environ.get('PORT', 5000))
 app = Flask(__name__)
 def get_connection():
 	db = 'postgresql://postgres:12345@localhost/postgres'
@@ -67,4 +68,4 @@ def final_page():
 
 
 if __name__ == '__main__':
-	app.run(debug = True)
+	app.run(host='0.0.0.0', port=port, debug=True)
