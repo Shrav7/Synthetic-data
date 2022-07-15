@@ -6,7 +6,7 @@ from flask import request, redirect, jsonify
 port = int(os.environ.get('PORT', 5000))
 app = Flask(__name__)
 def get_connection():
-	db = 'postgresql://postgres:12345@localhost/postgres'
+	db = 'postgresql://rudjhikauejttw:450d9178c1d64b0f989a6305cb78e6a56813355099bb043760c725818359f471@ec2-52-72-99-110.compute-1.amazonaws.com/d4g3vofuo61u4q'
 	conn = psycopg2.connect(db)
 	return conn
 
